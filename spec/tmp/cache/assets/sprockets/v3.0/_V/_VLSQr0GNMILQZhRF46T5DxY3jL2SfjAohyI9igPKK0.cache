@@ -1,0 +1,24 @@
+{:uriI"ßfile://app/assets/javascripts/spa-demo/subjects/current_trips/current_trip_info.html?type=text/html&id=5f69d4d87104b624ba7ebdf355896ae2a8611ceb8905c1f4450baaef480481a1:ET:load_pathI"app/assets/javascripts;T:filenameI"Rapp/assets/javascripts/spa-demo/subjects/current_trips/current_trip_info.html;T:	nameI"6spa-demo/subjects/current_trips/current_trip_info;T:logical_pathI";spa-demo/subjects/current_trips/current_trip_info.html;T:content_typeI"text/html;T:sourceI"B<div class="trip-info">
+  <h4>{{$ctrl.link.trip_name}}</h4>
+
+  <span class="id trip_id">{{$ctrl.link.trip_id}}</span>
+  <div class="distance" 
+       ng-if="$ctrl.link.distance">{{$ctrl.link.distance | number:1}} miles</div>
+  <p>
+    <div class="description">{{$ctrl.trip.description}}</div>
+  </p>
+  <p>
+    <div class="notes">{{$ctrl.trip.notes}}</div>
+  </p>
+
+  <span class="overlay glyphicon glyphicon-chevron-left"
+        ng-click="$ctrl.previousTrip()"></span>
+
+  <span class="overlay glyphicon glyphicon-chevron-right"
+        ng-click="$ctrl.nextTrip()"></span>
+</div>;T:metadata{	:dependencieso:Set:
+@hash}
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"2processors:type=text/html&file_type=text/html;TTI"`file-digest://app/assets/javascripts/spa-demo/subjects/current_trips/current_trip_info.html;TTF:charsetI"
+utf-8;F:digest"%µü∏
+’èFÙz˜∏®˙°MRï=÷Ú%πb T»É¨~:lengthiB:dependencies_digest"%£o¶ä¢Ü‚>±*ä7±O”q.vÃÌ$‰îNGùÉ:idI"E5f69d4d87104b624ba7ebdf355896ae2a8611ceb8905c1f4450baaef480481a1;F:
+mtimel+&õ\

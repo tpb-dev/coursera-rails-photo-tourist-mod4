@@ -1,0 +1,10 @@
+{:uriI"file://app/assets/javascripts/spa-demo/pages/trips_page.html?type=text/html&id=8379e1f39211412e1bf66b49e926333f5640d73d303d05dc08435024d9c5daa3:ET:load_pathI"app/assets/javascripts;T:filenameI":app/assets/javascripts/spa-demo/pages/trips_page.html;T:	nameI"spa-demo/pages/trips_page;T:logical_pathI"#spa-demo/pages/trips_page.html;T:content_typeI"text/html;T:sourceI"³<div class="trips-area" sd-trips-authz>
+    <h3>Trips</h3>
+    <sd-trip-editor authz="vm.authz"></sd-trip-editor>
+    <sd-trip-selector authz="vm.authz"></sd-trip-selector>
+</div>;T:metadata{	:dependencieso:Set:
+@hash}
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"2processors:type=text/html&file_type=text/html;TTI"Hfile-digest://app/assets/javascripts/spa-demo/pages/trips_page.html;TTF:charsetI"
+utf-8;F:digest"%ïp+‹ìf›_øúÿ@¾°ÌYŸ£ËÕ¤]Ì]ğ;©¾:lengthi³:dependencies_digest"%#[»OR¹;ì¸Ê;
+‡FÛ|4=~„:idI"E8379e1f39211412e1bf66b49e926333f5640d73d303d05dc08435024d9c5daa3;F:
+mtimel+R’\

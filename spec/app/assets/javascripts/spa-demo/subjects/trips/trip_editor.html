@@ -1,0 +1,139 @@
+<form class="trip-form row" name="tripform">
+  <span class="trip_id id">{{$ctrl.item.id}}</span>
+  <span class="invalid">{{$ctrl.item.errors.full_messages}}</span>
+
+  <div class="trip-name row col-lg-12">
+    <label class="col-xs-3">Name:</label>
+    <input class="col-xs-9"
+           name="trip-name"
+           data-ng-model="$ctrl.item.name"
+           ng-readonly="!$ctrl.authz.canUpdate"
+           required="required"
+           maxlength="40"
+           pattern=".{3,}" title="3 character minimum for Name"/>
+    <span class="invalid">{{$ctrl.item.errors.name}}</span>
+  </div>
+
+  <div class="trip-desc row col-lg-12"
+       ng-show="tripform.$valid">
+    <label class="col-xs-3">Description:</label>
+    <textarea class="col-xs-9"
+           name="trip-desc"
+           ng-model="$ctrl.item.description"
+           ng-readonly="!$ctrl.authz.canUpdate"
+           type="text"
+           size="80"
+           maxlength="4000"/>
+    <span class="invalid">{{$ctrl.item.errors.description}}</span>
+  </div>
+
+  <div class="trip-notes row col-lg-12"
+       ng-show="$ctrl.authz.canGetDetails && tripform.$valid">
+    <label class="col-xs-3">Notes:</label>
+    <textarea class="col-xs-9"
+           name="trip-notes"
+           ng-model="$ctrl.item.notes"
+           ng-readonly="!$ctrl.authz.canUpdate"
+           type="text"
+           size="80"
+           maxlength="4000"/>
+    <span class="invalid">{{$ctrl.item.errors.notes}}</span>
+  </div>
+
+  <div class="trip-image-viewer row col-lg-12">
+    <label class="col-xs-3">Related Images:</label>
+    <sd-image-viewer name="trip_editor"
+                     images="$ctrl.images"
+                     class="col-xs-9"
+                     ng-show="$ctrl.authz.canAddImage"
+    ></sd-image-viewer>
+  </div>
+
+  <div class="trip-image row col-lg-12"
+       style="padding-bottom: 20px"
+       ng-if="$ctrl.authz.canAddImage"
+        >
+      <input name="blah"
+             type="file"
+             ng-if="$ctrl.authz.canAddImage"
+             accept=".jpeg"
+             ngf-max-size="10MB"
+             id="blah2"> Upload trip pic</input>
+      <br>
+          <button name="image-create2"
+                  id="peyton"
+                  class="manning"
+                  type="button"
+                  ng-if="$ctrl.authz.canAddImage"
+                ng-click="$ctrl.createImage()">Upload Image</button>
+  </div>
+
+
+  </div>
+
+
+
+  <div class="trip-images row col-lg-12"
+       ng-if="$ctrl.authz.canUpdateImage ||
+              $ctrl.authz.canRemoveImage">
+    <label class="col-xs-3">Manage Images:</label>
+    <ul class="trip-images col-xs-9">
+      <li ng-repeat="ti in $ctrl.images | orderBy:'priority'">
+        <input type="number"
+               name="image-priority"
+               min="0"
+               max="9"
+               ng-show="$ctrl.authz.canUpdateImage && !ti.toRemove"
+               ng-model="ti.priority">
+        <div class="glyphicon glyphicon-asterisk"
+             ng-hide="ti.originalPriority==ti.priority || ti.toRemove"></div>
+        <a data-ui-sref="images({id:ti.image_id})">
+          <img style="width: 50px"
+             ng-src="{{ti.image_content_url}}?width=50"/>
+          <span class="id image_id">{{ti.image_id}}</span>
+          <label class="image-caption"
+                 ng-show="ti.image_caption">{{ti.image_caption}}</label>
+          <label class="image-caption"
+                 ng-hide="ti.image_caption">(no caption {{ti.image_id}})</label>
+        </a>
+      </li>
+    </ul>
+    <span class="invalid">{{$ctrl.item.errors.images}}</span>
+  </div>
+
+  <div class="trip-controls"
+       ng-show="$ctrl.authz.authenticated">
+    <button ng-show="!$ctrl.item.id && $ctrl.authz.canCreate"
+            name="trip-create"
+            ng-disabled="tripform.$invalid"
+            type="submit"
+            ng-click="$ctrl.create()">Create Trip</button>
+
+    <div ng-show="$ctrl.item.id">
+      <span class="trip-modify"
+            data-ng-hide="!$ctrl.authz.canUpdate &&
+                          !$ctrl.authz.canUpdateImage &&
+                          !$ctrl.authz.canRemoveImage">
+        <button name="trip-update"
+                type="submit"
+                ng-disabled="tripform.$invalid || !tripform.$dirty"
+                data-ng-hide="$ctrl.haveDirtyLinks() &&
+                  (!tripform['trip-name'].$dirty &&
+                   !tripform['trip-desc'].$dirty &&
+                   !tripform['trip-notes'].$dirty)"
+                ng-click="$ctrl.update()">Update Trip</button>
+        <button name="trip-images-update"
+                type="submit"
+                data-ng-show="$ctrl.haveDirtyLinks() &&
+                  (!tripform['trip-name'].$dirty &&
+                   !tripform['trip-desc'].$dirty &&
+                   !tripform['trip-notes'].$dirty)"
+                ng-click="$ctrl.updateImageLinks()">Update Image Links</button>
+      </span>
+
+      <button name="image-clear"
+              type="submit"
+              ng-click="$ctrl.clear()">Clear Trip</button>
+    </div>
+  </div>
+</form>

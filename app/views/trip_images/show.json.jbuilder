@@ -1,0 +1,1 @@
+json.partial! "trip_images/trip_image", trip_image: @trip_image
